@@ -77,21 +77,46 @@ export default function AboutUs() {
             viewport={{ once: true }}
             style={{ gridColumn: "2 / span 3", zIndex: 2, position: "relative", display: "flex", justifyContent: "center" }}
           >
-            <div style={{ 
-              width: "100%", 
-              maxWidth: "300px", 
-              aspectRatio: "1/1", 
-              borderRadius: "50%", 
-              border: "4px solid var(--color-text)", 
-              overflow: "hidden" 
-            }}>
-              <motion.img 
-                src="/logo.png" 
-                alt="Debattle Logo" 
-                animate={{ rotate: -360 }}
-                transition={{ ease: "linear", duration: 20, repeat: Infinity }}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-              />
+            <div style={{ position: "relative", width: "100%", maxWidth: "300px", aspectRatio: "1/1" }}>
+              {/* Hollow Shadow */}
+              <div style={{ 
+                position: "absolute", 
+                top: "16px", 
+                left: "16px", 
+                width: "100%", 
+                height: "100%", 
+                borderRadius: "50%", 
+                border: "4px dashed var(--color-text)",
+                zIndex: 0 
+              }} />
+              
+              {/* Main Logo Container */}
+              <motion.div 
+                whileHover={{ x: -4, y: -4 }}
+                whileTap={{ x: 12, y: 12 }}
+                transition={{ type: "spring", bounce: 0.6 }}
+                style={{ 
+                  position: "absolute",
+                  top: 8,
+                  left: 8,
+                  width: "100%", 
+                  height: "100%", 
+                  borderRadius: "50%", 
+                  border: "4px solid var(--color-text)", 
+                  backgroundColor: "var(--color-bg)",
+                  overflow: "hidden",
+                  zIndex: 1,
+                  cursor: "pointer"
+                }}
+              >
+                <motion.img 
+                  src="/logo.png" 
+                  alt="Debattle Logo" 
+                  animate={{ rotate: -360 }}
+                  transition={{ ease: "linear", duration: 20, repeat: Infinity }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                />
+              </motion.div>
             </div>
           </motion.div>
 
@@ -99,8 +124,8 @@ export default function AboutUs() {
             className="about-us-desc"
             style={{ gridColumn: "6 / span 7", zIndex: 2, position: "relative" }}
           >
-            <p ref={textRef1} style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)", fontWeight: 800, padding: "clamp(1.5rem, 4vw, 4rem)", backgroundColor: "var(--color-text)", color: "var(--color-bg)", border: "4px solid var(--color-primary)", boxShadow: "clamp(4px, 1vw, 12px) clamp(4px, 1vw, 12px) 0px var(--color-primary)", transform: "rotate(2deg)", aspectRatio: "3 / 2", display: "flex", alignItems: "center", textAlign: "center" }}>
-              Debattle was founded on a simple principle: democracy thrives on dialogue.  
+            <p ref={textRef1} style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)", fontWeight: 800, padding: "clamp(1.5rem, 4vw, 4rem)", backgroundColor: "var(--color-text)", color: "var(--color-bg)", border: "4px solid var(--color-primary)", boxShadow: "clamp(4px, 1vw, 12px) clamp(4px, 1vw, 12px) 0px var(--color-bg)", transform: "rotate(2deg)", aspectRatio: "3 / 2", display: "flex", alignItems: "center", textAlign: "center" }}>
+            Debattle was founded on a simple principle: democracy thrives on dialogue.  
             </p>
           </motion.div>
         </div>
