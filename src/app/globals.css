@@ -108,4 +108,7 @@ img {
   .about-us-section {
     min-height: 84vh !important;
   }
+  .stats-container {
+    flex-direction: column !important;
+  }
 }

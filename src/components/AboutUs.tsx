@@ -67,23 +67,19 @@ export default function AboutUs() {
         </h2>
       </div>
 
-      <div style={{ position: "absolute", top: "40%", left: "5%", zIndex: 0, opacity: 0.4, pointerEvents: "none", transform: "rotate(-5deg)" }}>
-        <h1 style={{ fontSize: "clamp(10rem, 20vw, 20rem)", margin: "1.5rem -2rem", lineHeight: 0.8, color: "var(--color-bg)" }}>WHO</h1>
-      </div>
-
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div className="grid about-us-grid" style={{ marginBottom: "8rem", paddingTop: "11rem" }}>
+        <div className="grid about-us-grid" style={{ marginBottom: "8rem", paddingTop: "18rem" }}>
           <motion.div 
             className="about-us-desc"
-            style={{ gridColumn: "8 / span 5", zIndex: 2, position: "relative" }}
+            style={{ gridColumn: "6 / span 7", zIndex: 2, position: "relative" }}
           >
-            <p ref={textRef1} style={{ fontSize: "clamp(1rem, 2vw, 1.75rem)", fontWeight: 700, padding: "clamp(1.5rem, 4vw, 4rem) clamp(1rem, 2vw, 2rem)", backgroundColor: "var(--color-text)", color: "var(--color-bg)", border: "4px solid var(--color-primary)", boxShadow: "clamp(4px, 1vw, 12px) clamp(4px, 1vw, 12px) 0px var(--color-primary)", transform: "rotate(2deg)" }}>
-              Debattle was founded on a simple principle: democracy thrives on dialogue. In a world of echo chambers and algorithms, we are building a space for raw, authentic, and meaningful political discourse.
+            <p ref={textRef1} style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)", fontWeight: 800, padding: "clamp(1.5rem, 4vw, 4rem)", backgroundColor: "var(--color-text)", color: "var(--color-bg)", border: "4px solid var(--color-primary)", boxShadow: "clamp(4px, 1vw, 12px) clamp(4px, 1vw, 12px) 0px var(--color-primary)", transform: "rotate(2deg)", aspectRatio: "3 / 2", display: "flex", alignItems: "center", textAlign: "center" }}>
+              Debattle was founded on a simple principle: democracy thrives on dialogue.  
             </p>
           </motion.div>
         </div>
         
-        <div style={{ display: "flex", flexWrap: "nowrap", gap: "clamp(1rem, 6vw, 6rem)", justifyContent: "center" }}>
+        <div className="stats-container" style={{ display: "flex", flexWrap: "nowrap", gap: "clamp(1rem, 3rem, 6rem)", justifyContent: "center" }}>
           <motion.div 
             initial={{ scale: 0 }}
             whileInView={{ scale: 1, rotate: -3 }}
