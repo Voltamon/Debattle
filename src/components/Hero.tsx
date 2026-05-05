@@ -25,6 +25,7 @@ export default function Hero() {
         alignItems: "center", 
         backgroundColor: "var(--color-bg)",
         color: "var(--color-text)",
+        paddingTop: "8rem"
       }}
     >
       {/* Background Giant Text Doodle */}
@@ -36,7 +37,7 @@ export default function Hero() {
         
         {/* Abstract Typography Title */}
         <motion.div 
-          style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", marginBottom: "4rem", cursor: "default" }}
+          style={{ display: "flex", flexWrap: "nowrap", justifyContent: "center", marginBottom: "4rem", cursor: "default" }}
           initial="initial"
           animate={controls}
         >
@@ -71,7 +72,7 @@ export default function Hero() {
                 }
               }}
               style={{ 
-                fontSize: "clamp(5rem, 15vw, 15rem)", 
+                fontSize: "clamp(3rem, 15vw, 15rem)", 
                 margin: 0, 
                 lineHeight: 0.8, 
                 textShadow: `6px 6px 0px ${i % 2 === 0 ? 'var(--color-secondary)' : 'var(--color-accent)'}`,
@@ -103,6 +104,7 @@ export default function Hero() {
               gridColumn: "1 / span 9", 
               textAlign: "left", 
               marginTop: "4rem", 
+              marginBottom: "clamp(12rem, 20vw, 15rem)",
               backgroundColor: "var(--color-bg)", 
               border: "4px dashed var(--color-text)", 
               borderLeft: "none",

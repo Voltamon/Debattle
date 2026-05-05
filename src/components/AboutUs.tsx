@@ -60,7 +60,8 @@ export default function AboutUs() {
           margin: 0, 
           color: "var(--color-primary)", 
           textShadow: "clamp(4px, 1vw, 10px) clamp(4px, 1vw, 10px) 0px var(--color-text)",
-          pointerEvents: "none"
+          pointerEvents: "none",
+          whiteSpace: "nowrap"
         }}>
           ABOUT US
         </h2>
