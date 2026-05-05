@@ -72,7 +72,7 @@ export default function Hero() {
                 }
               }}
               style={{ 
-                fontSize: "clamp(3rem, 15vw, 15rem)", 
+                fontSize: "clamp(4rem, 15vw, 18rem)", 
                 margin: 0, 
                 lineHeight: 0.8, 
                 textShadow: `6px 6px 0px ${i % 2 === 0 ? 'var(--color-secondary)' : 'var(--color-accent)'}`,

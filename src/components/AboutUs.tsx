@@ -56,7 +56,7 @@ export default function AboutUs() {
           position: "absolute",
           bottom: "clamp(0.5rem, 2vw, 2rem)",
           left: "calc(20vw + clamp(1rem, 5vw, 5rem))",
-          fontSize: "clamp(6rem, 12vw, 18rem)", 
+          fontSize: "clamp(3.6rem, 12vw, 18rem)", 
           margin: 0, 
           color: "var(--color-primary)", 
           textShadow: "clamp(4px, 1vw, 10px) clamp(4px, 1vw, 10px) 0px var(--color-text)",
