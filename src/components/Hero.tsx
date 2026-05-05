@@ -29,7 +29,7 @@ export default function Hero() {
       }}
     >
       {/* Background Giant Text Doodle */}
-      <div style={{ position: "absolute", top: "30%", left: "45%", zIndex: 2, opacity: 0.08, pointerEvents: "none", whiteSpace: "nowrap", rotate: "-20deg"}}>
+      <div style={{ position: "absolute", top: "40%", left: "clamp(30%, 52%, 55%)", zIndex: 2, opacity: 0.08, pointerEvents: "none", whiteSpace: "nowrap", rotate: "-20deg"}}>
         <h1 style={{ fontSize: "clamp(10rem, 25vw, 25rem)", margin: 0, lineHeight: 0.8 }}>RAW</h1>
       </div>
 
@@ -104,7 +104,7 @@ export default function Hero() {
               gridColumn: "1 / span 9", 
               textAlign: "left", 
               marginTop: "4rem", 
-              marginBottom: "clamp(12rem, 20vw, 15rem)",
+              marginBottom: "clamp(6rem, 20vw, 10rem)",
               backgroundColor: "var(--color-bg)", 
               border: "4px dashed var(--color-text)", 
               borderLeft: "none",
