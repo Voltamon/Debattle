@@ -25,7 +25,6 @@ export default function Hero() {
         alignItems: "center", 
         backgroundColor: "var(--color-bg)",
         color: "var(--color-text)",
-        paddingTop: "5rem"
       }}
     >
       {/* Background Giant Text Doodle */}
