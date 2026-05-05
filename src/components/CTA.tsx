@@ -40,7 +40,7 @@ export default function CTA() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginTop: "4rem" }}>
-          <p style={{ fontSize: "2rem", maxWidth: "800px", marginBottom: "3rem", fontWeight: 800, color: "var(--color-text)", border: "4px solid var(--color-text)", padding: "2rem", backgroundColor: "var(--color-bg)", boxShadow: "10px 10px 0px var(--color-text)" }}>
+          <p style={{ fontSize: "clamp(1rem, 3vw, 2rem)", maxWidth: "800px", marginBottom: "3rem", fontWeight: 800, color: "var(--color-text)", border: "4px solid var(--color-text)", padding: "clamp(1rem, 3vw, 2rem)", backgroundColor: "var(--color-bg)", boxShadow: "clamp(4px, 1.5vw, 10px) clamp(4px, 1.5vw, 10px) 0px var(--color-text)" }}>
             The world needs your voice. Join Debattle today and start engaging in the discussions that matter.
           </p>
 
@@ -55,12 +55,12 @@ export default function CTA() {
               gap: "1rem", 
               backgroundColor: "var(--color-primary)", 
               color: "var(--color-bg)", 
-              padding: "2rem 4rem", 
-              fontSize: "2rem", 
+              padding: "clamp(1rem, 2vw, 2rem) clamp(1.5rem, 4vw, 4rem)", 
+              fontSize: "clamp(1rem, 3vw, 2rem)", 
               fontWeight: 900, 
               textTransform: "uppercase",
               border: "8px solid var(--color-text)",
-              boxShadow: "15px 15px 0px var(--color-text)"
+              boxShadow: "clamp(6px, 2vw, 15px) clamp(6px, 2vw, 15px) 0px var(--color-text)"
             }}
           >
             Create Account <ArrowRight size={36} />

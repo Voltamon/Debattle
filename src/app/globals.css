@@ -97,3 +97,12 @@ img {
 .hover-lift:hover {
   transform: translateY(-5px);
 }
+
+@media (max-width: 768px) {
+  .about-us-desc {
+    grid-column: 2 / span 10 !important;
+  }
+  .about-us-grid {
+    padding-top: 5rem !important;
+  }
+}

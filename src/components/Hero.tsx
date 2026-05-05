@@ -30,7 +30,7 @@ export default function Hero() {
     >
       {/* Background Giant Text Doodle */}
       <div style={{ position: "absolute", top: "30%", left: "45%", zIndex: 2, opacity: 0.08, pointerEvents: "none", whiteSpace: "nowrap", rotate: "-20deg"}}>
-        <h1 style={{ fontSize: "25rem", margin: 0, lineHeight: 0.8 }}>RAW</h1>
+        <h1 style={{ fontSize: "clamp(10rem, 25vw, 25rem)", margin: 0, lineHeight: 0.8 }}>RAW</h1>
       </div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
@@ -112,7 +112,7 @@ export default function Hero() {
               paddingLeft: "calc(50vw + 2rem)"
             }}
           >
-            <p style={{ fontSize: "1.5rem", marginBottom: "3rem", opacity: 0.9, color: "var(--color-text)", display: "inline-block", textAlign: "left" }}>
+            <p style={{ fontSize: "clamp(1rem, 2vw, 1.5rem)", marginBottom: "3rem", opacity: 0.9, color: "var(--color-text)", display: "inline-block", textAlign: "left" }}>
               Step into the ring. Bring your ideas, your arguments, and your passion. We provide the platform, you provide the voice.
             </p>
             <br/>
@@ -120,7 +120,7 @@ export default function Hero() {
               href="#cta" 
               whileHover={{ scale: 1.05, rotate: 2, backgroundColor: "var(--color-accent)", color: "var(--color-bg)" }}
               whileTap={{ scale: 0.95 }}
-              style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "var(--color-bg)", padding: "1.5rem 4rem", fontSize: "1.5rem", fontWeight: 900, textTransform: "uppercase", border: "4px solid var(--color-text)", boxShadow: "10px 10px 0px var(--color-text)", transition: "background-color 0.3s, color 0.3s" }}
+              style={{ display: "inline-block", backgroundColor: "var(--color-primary)", color: "var(--color-bg)", padding: "clamp(0.75rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 4rem)", fontSize: "clamp(1rem, 2vw, 1.5rem)", fontWeight: 900, textTransform: "uppercase", border: "4px solid var(--color-text)", boxShadow: "10px 10px 0px var(--color-text)", transition: "background-color 0.3s, color 0.3s" }}
             >
               Join The Fray
             </motion.a>
