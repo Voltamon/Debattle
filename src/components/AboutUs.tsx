@@ -37,7 +37,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <section ref={sectionRef} style={{ padding: "var(--spacing-xl) 0", minHeight: "120vh", backgroundColor: "var(--color-secondary)", color: "var(--color-bg)", position: "relative", overflow: "visible" }}>
+    <section ref={sectionRef} className="about-us-section" style={{ padding: "var(--spacing-xl) 0", minHeight: "120vh", backgroundColor: "var(--color-secondary)", color: "var(--color-bg)", position: "relative", overflow: "visible" }}>
       
       {/* Slanted Separator from Hero */}
       <div style={{

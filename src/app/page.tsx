@@ -8,7 +8,6 @@ export default function Home() {
     <main>
       <Hero />
       <AboutUs />
-      <DebateEngine />
       <CTA />
       
       <footer style={{ backgroundColor: "var(--color-text)", color: "var(--color-bg)", padding: "2rem 0", textAlign: "center" }}>
