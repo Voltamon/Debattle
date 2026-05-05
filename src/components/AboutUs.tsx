@@ -68,7 +68,33 @@ export default function AboutUs() {
       </div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div className="grid about-us-grid" style={{ marginBottom: "8rem", paddingTop: "18rem" }}>
+        <div className="grid about-us-grid" style={{ marginBottom: "8rem", paddingTop: "18rem", alignItems: "center" }}>
+          <motion.div
+            className="about-us-logo"
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            viewport={{ once: true }}
+            style={{ gridColumn: "2 / span 3", zIndex: 2, position: "relative", display: "flex", justifyContent: "center" }}
+          >
+            <div style={{ 
+              width: "100%", 
+              maxWidth: "300px", 
+              aspectRatio: "1/1", 
+              borderRadius: "50%", 
+              border: "4px solid var(--color-text)", 
+              overflow: "hidden" 
+            }}>
+              <motion.img 
+                src="/logo.png" 
+                alt="Debattle Logo" 
+                animate={{ rotate: -360 }}
+                transition={{ ease: "linear", duration: 20, repeat: Infinity }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+              />
+            </div>
+          </motion.div>
+
           <motion.div 
             className="about-us-desc"
             style={{ gridColumn: "6 / span 7", zIndex: 2, position: "relative" }}
