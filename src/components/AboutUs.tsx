@@ -77,7 +77,7 @@ export default function AboutUs() {
             viewport={{ once: true }}
             style={{ gridColumn: "2 / span 3", zIndex: 2, position: "relative", display: "flex", justifyContent: "center" }}
           >
-            <div style={{ position: "relative", width: "100%", maxWidth: "300px", aspectRatio: "1/1" }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: "300px", aspectRatio: "1/1", marginBottom: "3.5rem"}}>
               {/* Hollow Shadow */}
               <div style={{ 
                 position: "absolute", 
@@ -106,7 +106,8 @@ export default function AboutUs() {
                   backgroundColor: "var(--color-bg)",
                   overflow: "hidden",
                   zIndex: 1,
-                  cursor: "pointer"
+                  cursor: "pointer",
+                  WebkitTapHighlightColor: "transparent"
                 }}
               >
                 <motion.img 

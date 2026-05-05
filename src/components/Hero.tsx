@@ -25,7 +25,7 @@ export default function Hero() {
         alignItems: "center", 
         backgroundColor: "var(--color-bg)",
         color: "var(--color-text)",
-        paddingTop: "8rem"
+        paddingTop: "clamp(2rem, 10vw, 8rem)"
       }}
     >
       {/* Background Giant Text Doodle */}
@@ -52,7 +52,7 @@ export default function Hero() {
                   y: 0, 
                   rotate: 0, 
                   color: "var(--color-text)",
-                  transition: { duration: 0.4, delay: 4, type: "spring", bounce: 0.2 } 
+                  transition: { duration: 0.8, delay: 1, type: "spring", bounce: 0.2 } 
                 }),
                 loop: (i) => {
                   const sign = Math.random() > 0.5 ? 1 : -1;
