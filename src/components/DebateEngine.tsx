@@ -2,78 +2,137 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { Mic2, MessageSquare, Award } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Mic2, MessageSquare, Award, ArrowRight } from "lucide-react";
 
 export default function DebateEngine() {
   const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const doodleX = useTransform(scrollYProgress, [0, 1], [150, -150]);
   
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
-    if (containerRef.current) {
-      const cards = gsap.utils.toArray(".engine-card");
-      gsap.fromTo(cards, 
-        { scale: 0.8, opacity: 0, rotation: () => Math.random() * 20 - 10 },
-        {
-          scale: 1,
-          opacity: 1,
-          rotation: () => Math.random() * 6 - 3,
-          duration: 0.8,
-          stagger: 0.3,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 60%",
-          }
-        }
-      );
-    }
   }, []);
 
   return (
-    <section ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "var(--color-primary)", position: "relative", overflow: "hidden", borderTop: "8px solid var(--color-text)" }}>
-      
-      {/* Background Giant Text Doodle */}
-      <div style={{ position: "absolute", top: "20%", right: "-10%", zIndex: 0, opacity: 0.1, pointerEvents: "none", transform: "rotate(15deg)" }}>
-        <h1 style={{ fontSize: "clamp(10rem, 25vw, 25rem)", margin: 0, lineHeight: 0.8, color: "var(--color-bg)" }}>FIGHT</h1>
-      </div>
+    <section ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", borderTop: "var(--border-weight) solid var(--color-text)", overflow: "hidden" }}>
+      {/* Background Doodle */}
+      <motion.div 
+        className="mobile-hide" 
+        style={{ 
+          position: "absolute", 
+          top: "20%", 
+          right: "-15%", 
+          zIndex: 0, 
+          opacity: 0.05, 
+          pointerEvents: "none", 
+          whiteSpace: "nowrap", 
+          rotate: "-5deg", 
+          color: "var(--color-primary)",
+          x: doodleX
+        }}
+      >
+        <h1 style={{ fontSize: "25rem", margin: 0, lineHeight: 0.8 }}>DIVISION</h1>
+      </motion.div>
 
-      <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: "4rem" }}>
-        <div style={{ textAlign: "center", marginBottom: "var(--spacing-xl)" }}>
-          <h2 style={{ fontSize: "clamp(2rem, 6vw, 5rem)", color: "var(--color-bg)", textTransform: "lowercase", letterSpacing: "-5px" }}>_the_debate_engine</h2>
-          <p style={{ fontSize: "clamp(0.85rem, 2vw, 1.25rem)", width: "100%", maxWidth: "600px", margin: "0 auto", marginTop: "1rem", color: "var(--color-text)", backgroundColor: "var(--color-accent)", padding: "1rem", border: "4px solid var(--color-bg)" }}>
-            A structured format designed to elevate conversation and reward logical reasoning over loud shouting.
-          </p>
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+          <div className="badge" style={{ marginBottom: "1rem", borderColor: "var(--color-secondary)", color: "var(--color-secondary)" }}>The Standing Orders</div>
+          <h2 style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>Order of Business</h2>
+          <p className="mono" style={{ opacity: 0.6, maxWidth: "600px", margin: "1rem auto 0" }}>Our platform upholds the rigorous standards of parliamentary discourse, ensuring every motion is heard and decided.</p>
         </div>
 
-        <div style={{ display: "flex", flexWrap: "nowrap", justifyContent: "center", gap: "clamp(1rem, 4vw, 4rem)" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", position: "relative" }}>
+          {/* Connector Lines (Desktop Only) */}
+          <div className="mobile-hide" style={{ position: "absolute", top: "50%", left: "15%", right: "15%", height: "2px", borderTop: "2px dashed var(--color-surface)", zIndex: 0 }} />
+
+          <Step 
+            number="01" 
+            title="PROPOSITION" 
+            icon={<Mic2 size={32} />} 
+            desc="The motion is moved. The Proposition and Opposition deliver their opening statements to the House."
+            color="var(--color-primary)"
+            tilt="-5deg"
+          />
           
-          <div className="engine-card" style={{ flex: "1 1 0", border: "4px solid var(--color-text)", padding: "clamp(0.5rem, 2vw, 2rem)", backgroundColor: "var(--color-accent)", display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", boxShadow: "clamp(4px, 1.5vw, 15px) clamp(4px, 1.5vw, 15px) 0px var(--color-bg)" }}>
-            <div style={{ padding: "1rem", backgroundColor: "var(--color-text)", borderRadius: "0%", marginBottom: "1rem", color: "var(--color-bg)" }}>
-              <Mic2 size={40} />
-            </div>
-            <h3 style={{ fontSize: "clamp(1rem, 3vw, 2rem)", marginBottom: "1rem", color: "var(--color-bg)" }}>01_STAGE</h3>
-            <p style={{ color: "var(--color-bg)", fontWeight: 600, fontSize: "clamp(0.6rem, 1vw, 1rem)" }}>Propose a topic or accept a challenge. State your premise clearly and set the rules of engagement.</p>
+          <div className="mobile-hide" style={{ alignSelf: "center", zIndex: 1 }}>
+            <ArrowRight className="mono" style={{ opacity: 0.3 }} />
           </div>
 
-          <div className="engine-card" style={{ flex: "1 1 0", border: "4px solid var(--color-text)", padding: "clamp(0.5rem, 2vw, 2rem)", backgroundColor: "var(--color-secondary)", display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right", boxShadow: "calc(clamp(4px, 1.5vw, 15px) * -1) clamp(4px, 1.5vw, 15px) 0px var(--color-bg)", marginTop: "clamp(1rem, 4vw, 4rem)" }}>
-            <div style={{ padding: "1rem", backgroundColor: "var(--color-bg)", borderRadius: "50%", marginBottom: "1rem", color: "var(--color-text)" }}>
-              <MessageSquare size={40} />
-            </div>
-            <h3 style={{ fontSize: "clamp(1rem, 3vw, 2rem)", marginBottom: "1rem", color: "var(--color-bg)" }}>02_REBUTTAL</h3>
-            <p style={{ color: "var(--color-bg)", fontWeight: 600, fontSize: "clamp(0.6rem, 1vw, 1rem)" }}>Engage in structured, timed back-and-forth. Our algorithm ensures equal speaking time and fair play.</p>
+          <Step 
+            number="02" 
+            title="DISCUSSION" 
+            icon={<MessageSquare size={32} />} 
+            desc="The floor is opened. Members engage in moderated debate, raising points of order and clarification."
+            color="var(--color-accent)"
+            tilt="5deg"
+          />
+
+          <div className="mobile-hide" style={{ alignSelf: "center", zIndex: 1 }}>
+            <ArrowRight className="mono" style={{ opacity: 0.3 }} />
           </div>
 
-          <div className="engine-card" style={{ flex: "1 1 0", border: "4px solid var(--color-text)", padding: "clamp(0.5rem, 2vw, 2rem)", backgroundColor: "var(--color-text)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", boxShadow: "clamp(3px, 1vw, 10px) calc(clamp(3px, 1vw, 10px) * -1) 0px var(--color-accent)", marginTop: "clamp(2rem, 8vw, 8rem)" }}>
-            <div style={{ padding: "1rem", backgroundColor: "var(--color-bg)", borderRadius: "10px", marginBottom: "1rem", color: "var(--color-text)" }}>
-              <Award size={40} />
-            </div>
-            <h3 style={{ fontSize: "clamp(1rem, 3vw, 2rem)", marginBottom: "1rem", color: "var(--color-bg)" }}>03_VOTE</h3>
-            <p style={{ color: "var(--color-bg)", fontWeight: 600, fontSize: "clamp(0.6rem, 1vw, 1rem)" }}>The audience decides. Live polling and sentiment analysis determine the most persuasive argument.</p>
-          </div>
-
+          <Step 
+            number="03" 
+            title="RESOLUTION" 
+            icon={<Award size={32} />} 
+            desc="The House divides for the final division. Votes are tallied and the result is formally recorded."
+            color="var(--color-success)"
+            tilt="-5deg"
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function Step({ number, title, icon, desc, color, tilt }: { number: string, title: string, icon: React.ReactNode, desc: string, color: string, tilt: string }) {
+  const shadowColor = color === "var(--color-primary)" ? "var(--color-accent)" : 
+                      color === "var(--color-accent)" ? "var(--color-secondary)" : 
+                      color === "var(--color-success)" ? "var(--color-primary)" : "#1d2021";
+
+  const textColor = color === "var(--color-accent)" ? "#1d2021" : "#ebdbb2";
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30, rotate: 0 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        rotate: tilt,
+        transition: { 
+          duration: 0.8, 
+          type: "spring", 
+          stiffness: 100,
+          damping: 20
+        } 
+      }}
+      viewport={{ once: true, margin: "-100px" }}
+      className="engine-step game-card" 
+      style={{ 
+        flex: "1 1 300px", 
+        maxWidth: "350px", 
+        padding: "2rem", 
+        zIndex: 1, 
+        backgroundColor: color,
+        color: textColor,
+        border: "4px solid #1d2021",
+        boxShadow: `8px 8px 0px ${shadowColor}`,
+        transformOrigin: "center center"
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem" }}>
+        <div style={{ width: 60, height: 60, backgroundColor: "#1d2021", color: color, display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid #1d2021" }}>
+          {icon}
+        </div>
+        <span className="mono" style={{ fontSize: "1.5rem", fontWeight: 900, opacity: 0.3 }}>{number}</span>
+      </div>
+      <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", letterSpacing: "1px", fontWeight: 900 }}>{title}</h3>
+      <p className="mono" style={{ fontSize: "0.85rem", lineHeight: 1.5, fontWeight: 700 }}>{desc}</p>
+    </motion.div>
   );
 }

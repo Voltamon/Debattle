@@ -1,22 +1,90 @@
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import AboutUs from "../components/AboutUs";
+import Arena from "../components/Arena";
 import DebateEngine from "../components/DebateEngine";
+import Leaderboard from "../components/Leaderboard";
+import AboutUs from "../components/AboutUs";
 import CTA from "../components/CTA";
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  
+  // Dynamic background color mapping based on scroll
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [
+      "#1d2021", // Hero (Dark)
+      "#282828", // Arena (Deep Gray)
+      "#1d2021", // Engine (Dark)
+      "#32302f", // Leaderboard (Warm Dark)
+      "#1d2021"  // CTA/AboutUs (Back to Dark)
+    ]
+  );
+
   return (
-    <main>
+    <motion.main 
+      style={{ backgroundColor, minHeight: "100vh", transition: "background-color 0.5s ease" }}
+    >
       <Hero />
-      <AboutUs />
-      <CTA />
       
-      <footer style={{ backgroundColor: "var(--color-text)", color: "var(--color-bg)", padding: "2rem 0", textAlign: "center" }}>
+      <Arena />
+      
+      <DebateEngine />
+      
+      <Leaderboard />
+      
+      <AboutUs />
+      
+      <CTA />
+
+      <footer style={{ backgroundColor: "rgba(0,0,0,0.2)", color: "var(--color-text)", padding: "2rem 0", borderTop: "var(--border-weight) solid var(--color-text)" }}>
         <div className="container">
-          <p style={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: "2px" }}>
-            © {new Date().getFullYear()} Debattle. All rights reserved.
-          </p>
+          <div className="grid">
+            <div style={{ gridColumn: "1 / span 12", textAlign: "center", marginBottom: "2rem" }} className="desktop-grid-adjust">
+              <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>DEBATTLE<span style={{ color: "var(--color-primary)" }}>.</span></h2>
+              <p className="mono" style={{ fontSize: "0.8rem", opacity: 0.6, maxWidth: "600px", margin: "0 auto" }}>
+                The world's premier platform for competitive rhetoric and structured parliamentary discourse.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "2rem", marginBottom: "2rem" }} className="mono">
+            <div>
+              <h4 style={{ marginBottom: "1rem", color: "var(--color-accent)" }}>Platform</h4>
+              <ul style={{ listStyle: "none", fontSize: "0.75rem", opacity: 0.8, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <li><a href="#arena">The House</a></li>
+                <li><a href="#leaderboard">Merit</a></li>
+                <li><a href="#about">Constitution</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: "1rem", color: "var(--color-primary)" }}>Social</h4>
+              <ul style={{ listStyle: "none", fontSize: "0.75rem", opacity: 0.8, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <li><a href="#">Twitter/X</a></li>
+                <li><a href="#">Discord</a></li>
+                <li><a href="#">LinkedIn</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: "1rem", color: "var(--color-secondary)" }}>Legal</h4>
+              <ul style={{ listStyle: "none", fontSize: "0.75rem", opacity: 0.8, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <li><a href="#">Standing Orders</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div style={{ paddingTop: "1.5rem", borderTop: "1px solid rgba(235, 219, 178, 0.1)", textAlign: "center" }}>
+            <p className="mono" style={{ fontSize: "0.7rem", opacity: 0.4 }}>
+              © {new Date().getFullYear()} DEBATTLE. ELEVATING PUBLIC DISCOURSE.
+            </p>
+          </div>
         </div>
       </footer>
-    </main>
+    </motion.main>
   );
 }

@@ -1,160 +1,186 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
 export default function AboutUs() {
   const sectionRef = useRef<HTMLElement>(null);
-  const textRef1 = useRef<HTMLParagraphElement>(null);
-  const textRef2 = useRef<HTMLParagraphElement>(null);
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const isQuoteInView = useInView(quoteRef, { once: true, margin: "-100px" });
+  const [displayedText, setDisplayedText] = useState("");
+  const fullQuote = "\"In this House, we do not fight with swords, but with words. We do not seek to crush, but to convince.\"";
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const doodleX = useTransform(scrollYProgress, [0, 1], [120, -120]);
+  
+  useEffect(() => {
+    if (isQuoteInView) {
+      let i = 0;
+      const timer = setInterval(() => {
+        setDisplayedText(fullQuote.slice(0, i));
+        i++;
+        if (i > fullQuote.length) clearInterval(timer);
+      }, 40);
+      return () => clearInterval(timer);
+    }
+  }, [isQuoteInView]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
     if (sectionRef.current) {
-      gsap.fromTo(textRef1.current, 
-        { x: -100, opacity: 0 },
+      gsap.fromTo(".stat-card", 
+        { y: 50, opacity: 0 },
         {
-          x: 0, 
+          y: 0, 
           opacity: 1, 
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 70%" }
-        }
-      );
-      gsap.fromTo(textRef2.current, 
-        { x: 100, opacity: 0 },
-        {
-          x: 0, 
-          opacity: 1, 
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 50%" }
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: { trigger: sectionRef.current, start: "top 60%" }
         }
       );
     }
   }, []);
 
   return (
-    <section ref={sectionRef} className="about-us-section" style={{ padding: "var(--spacing-xl) 0", minHeight: "120vh", backgroundColor: "var(--color-secondary)", color: "var(--color-bg)", position: "relative", overflow: "visible" }}>
-      
-      {/* Slanted Separator from Hero */}
-      <div style={{
-        position: "absolute",
-        top: "-100vh",
-        right: 0,
-        width: "120vw",
-        height: "100vh",
-        backgroundColor: "var(--color-bg)",
-        borderBottom: "8px solid var(--color-text)",
-        transformOrigin: "bottom right",
-        transform: "rotate(-20deg)",
-        zIndex: 0
-      }}>
-        <h2 style={{ 
-          position: "absolute",
-          bottom: "clamp(0.5rem, 2vw, 2rem)",
-          left: "calc(20vw + clamp(1rem, 5vw, 5rem))",
-          fontSize: "clamp(3.6rem, 12vw, 18rem)", 
-          margin: 0, 
-          color: "var(--color-primary)", 
-          textShadow: "clamp(4px, 1vw, 10px) clamp(4px, 1vw, 10px) 0px var(--color-text)",
-          pointerEvents: "none",
-          whiteSpace: "nowrap"
-        }}>
-          ABOUT US
-        </h2>
-      </div>
+    <section id="about" ref={sectionRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", borderTop: "var(--border-weight) solid var(--color-text)", position: "relative", overflow: "hidden" }}>
+      {/* Background Doodle */}
+      <motion.div 
+        className="mobile-hide" 
+        style={{ 
+          position: "absolute", 
+          top: "50%", 
+          right: "-10%", 
+          y: "-50%",
+          x: doodleX,
+          zIndex: 0, 
+          opacity: 0.05, 
+          pointerEvents: "none", 
+          whiteSpace: "nowrap", 
+          rotate: "20deg", 
+          color: "var(--color-primary)" 
+        }}
+      >
+        <h1 style={{ fontSize: "25rem", margin: 0, lineHeight: 0.8 }}>ORDER</h1>
+      </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div className="grid about-us-grid" style={{ marginBottom: "8rem", paddingTop: "18rem", alignItems: "center" }}>
-          <motion.div
-            className="about-us-logo"
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            viewport={{ once: true }}
-            style={{ gridColumn: "2 / span 3", zIndex: 2, position: "relative", display: "flex", justifyContent: "center" }}
-          >
-            <div style={{ position: "relative", width: "100%", maxWidth: "300px", aspectRatio: "1/1", marginBottom: "3.5rem"}}>
-              {/* Hollow Shadow */}
-              <div style={{ 
-                position: "absolute", 
-                top: "16px", 
-                left: "16px", 
-                width: "100%", 
-                height: "100%", 
-                borderRadius: "50%", 
-                border: "4px dashed var(--color-text)",
-                zIndex: 0 
-              }} />
-              
-              {/* Main Logo Container */}
-              <motion.div 
-                whileHover={{ x: -4, y: -4 }}
-                whileTap={{ x: 12, y: 12 }}
-                transition={{ type: "spring", bounce: 0.6 }}
-                style={{ 
-                  position: "absolute",
-                  top: 8,
-                  left: 8,
-                  width: "100%", 
-                  height: "100%", 
-                  borderRadius: "50%", 
-                  border: "4px solid var(--color-text)", 
-                  backgroundColor: "var(--color-bg)",
-                  overflow: "hidden",
-                  zIndex: 1,
-                  cursor: "pointer",
-                  WebkitTapHighlightColor: "transparent"
-                }}
-              >
-                <motion.img 
-                  src="/logo.png" 
-                  alt="Debattle Logo" 
-                  animate={{ rotate: -360 }}
-                  transition={{ ease: "linear", duration: 20, repeat: Infinity }}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-                />
-              </motion.div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="about-us-desc"
-            style={{ gridColumn: "6 / span 7", zIndex: 2, position: "relative" }}
-          >
-            <p ref={textRef1} style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)", fontWeight: 800, padding: "clamp(1.5rem, 4vw, 4rem)", backgroundColor: "var(--color-text)", color: "var(--color-bg)", border: "4px solid var(--color-primary)", boxShadow: "clamp(4px, 1vw, 12px) clamp(4px, 1vw, 12px) 0px var(--color-bg)", transform: "rotate(2deg)", aspectRatio: "3 / 2", display: "flex", alignItems: "center", textAlign: "center" }}>
-            Debattle was founded on a simple principle: democracy thrives on dialogue.  
+        <div className="grid" style={{ alignItems: "center", marginBottom: "clamp(3rem, 10vw, 6rem)" }}>
+          <div style={{ gridColumn: "1 / span 12", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }} className="desktop-grid-adjust">
+            <div className="badge" style={{ marginBottom: "1rem", color: "var(--color-primary)" }}>The Constitution</div>
+            <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", marginBottom: "2rem" }}>The House is in Order.</h2>
+            <p className="mono" style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)", opacity: 0.8, lineHeight: 1.6, maxWidth: "800px" }}>
+              Debattle is the digital successor to the great debating chambers of history. We provide the infrastructure for rigorous, structured, and civil disagreement—where rhetoric is refined, and logic is the only currency.
             </p>
-          </motion.div>
-        </div>
-        
-        <div className="stats-container" style={{ display: "flex", flexWrap: "nowrap", gap: "clamp(1rem, 3rem, 6rem)", justifyContent: "center" }}>
-          <motion.div 
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1, rotate: -3 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.1, rotate: 2, backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
-            style={{ border: "4px solid var(--color-bg)", padding: "clamp(0.5rem, 2vw, 2rem)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", backgroundColor: "var(--color-accent)", color: "var(--color-text)", boxShadow: "clamp(2px, 1vw, 8px) clamp(2px, 1vw, 8px) 0px var(--color-bg)", flex: "1 1 0" }}
-          >
-            <span style={{ fontSize: "clamp(1.5rem, 5vw, 4rem)", fontWeight: 900, fontFamily: "var(--font-display)", lineHeight: 1 }}>50K+</span>
-            <span style={{ textTransform: "uppercase", fontWeight: 800, marginTop: "0.5rem", fontSize: "clamp(0.6rem, 1vw, 1rem)" }}>Debates Hosted</span>
-          </motion.div>
+          </div>
           
-          <motion.div 
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1, rotate: 3 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.1, rotate: -2, backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
-            style={{ border: "4px solid var(--color-bg)", padding: "clamp(0.5rem, 2vw, 2rem)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", backgroundColor: "var(--color-primary)", color: "var(--color-text)", boxShadow: "clamp(2px, 1vw, 8px) clamp(2px, 1vw, 8px) 0px var(--color-bg)", flex: "1 1 0" }}
-          >
-            <span style={{ fontSize: "clamp(1.5rem, 5vw, 4rem)", fontWeight: 900, fontFamily: "var(--font-display)", lineHeight: 1 }}>1M+</span>
-            <span style={{ textTransform: "uppercase", fontWeight: 800, marginTop: "0.5rem", fontSize: "clamp(0.6rem, 1vw, 1rem)" }}>Votes Cast</span>
-          </motion.div>
+          <div style={{ gridColumn: "1 / span 12", marginTop: "3rem" }}>
+            <motion.div 
+              ref={quoteRef}
+              initial={{ rotate: 0 }}
+              whileInView={{ rotate: -1 }}
+              className="game-card about-quote-card"
+              style={{ padding: "clamp(1.5rem, 5vw, 4rem)", backgroundColor: "#ebdbb2", color: "#1d2021", margin: "0 auto", maxWidth: "1000px", border: "4px solid #1d2021", boxShadow: "10px 10px 0px var(--color-primary)" }}
+            >
+              <blockquote style={{ fontSize: "clamp(1.1rem, 3vw, 1.5rem)", fontWeight: 900, fontStyle: "italic", lineHeight: 1.3 }}>
+                {displayedText}
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.8 }}
+                  style={{ display: "inline-block", width: "4px", height: "1.2em", backgroundColor: "var(--color-primary)", marginLeft: "4px", verticalAlign: "middle" }}
+                />
+              </blockquote>
+              <footer className="mono" style={{ marginTop: "2rem", color: "var(--color-primary)", fontSize: "0.8rem", fontWeight: 800 }}>— THE STANDING ORDERS v1.0</footer>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="stats-container" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem" }}>
+          <StatCard label="Sessions Convened" value="124K+" color="var(--color-primary)" />
+          <StatCard label="Enrolled Members" value="42K+" color="var(--color-accent)" />
+          <StatCard label="Divisions Recorded" value="1.2M+" color="var(--color-secondary)" />
+          <StatCard label="Points of Order Raised" value="842K" color="var(--color-success)" />
         </div>
       </div>
     </section>
   );
+}
+
+function StatCard({ label, value, color }: { label: string, value: string, color: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const shadowColor = color === "var(--color-primary)" ? "var(--color-accent)" : 
+                      color === "var(--color-accent)" ? "var(--color-secondary)" : 
+                      color === "var(--color-secondary)" ? "var(--color-success)" :
+                      color === "var(--color-success)" ? "var(--color-primary)" : "#1d2021";
+
+  const textColor = (color === "var(--color-accent)" || color === "var(--color-success)") ? "#1d2021" : "#ebdbb2";
+
+  return (
+    <motion.div 
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="stat-card game-card" 
+      style={{ 
+        padding: "clamp(1rem, 3vw, 1.5rem)", 
+        textAlign: "center", 
+        backgroundColor: color,
+        color: textColor,
+        border: "4px solid #1d2021",
+        boxShadow: `6px 6px 0px ${shadowColor}`,
+        cursor: "default" 
+      }}
+    >
+      <div className="mono" style={{ fontSize: "clamp(1.2rem, 5vw, 2rem)", fontWeight: 900, marginBottom: "0.5rem" }}>
+        <RollingNumber value={value} trigger={isHovered} />
+      </div>
+      <div className="mono" style={{ fontSize: "clamp(0.55rem, 2vw, 0.7rem)", opacity: 0.9, textTransform: "uppercase", letterSpacing: "1px", lineHeight: 1.2, fontWeight: 700 }}>{label}</div>
+    </motion.div>
+  );
+}
+
+function RollingNumber({ value, trigger }: { value: string, trigger: boolean }) {
+  const [display, setDisplay] = useState(value);
+  
+  useEffect(() => {
+    if (trigger) {
+      const numericPart = value.replace(/[^0-9.]/g, "");
+      const suffix = value.replace(/[0-9.,]/g, "");
+      const target = parseFloat(numericPart.replace(/,/g, ""));
+      
+      let start = 0;
+      const duration = 1000;
+      const startTime = performance.now();
+      
+      const update = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = start + (target - start) * easeOut;
+        
+        let formatted = "";
+        if (value.includes(",")) {
+          formatted = Math.floor(current).toLocaleString();
+        } else if (value.includes(".")) {
+          formatted = current.toFixed(1);
+        } else {
+          formatted = Math.floor(current).toString();
+        }
+        
+        setDisplay(formatted + suffix);
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      };
+      
+      requestAnimationFrame(update);
+    }
+  }, [trigger, value]);
+
+  return <>{display}</>;
 }
