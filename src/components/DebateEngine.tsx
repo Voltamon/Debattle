@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Mic2, MessageSquare, Award, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function DebateEngine() {
   const containerRef = useRef<HTMLElement>(null);
@@ -41,9 +41,8 @@ export default function DebateEngine() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-          <div className="badge" style={{ marginBottom: "1rem", "--badge-fill": "var(--color-secondary)" } as any}>The Standing Orders</div>
-          <h2 style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>Order of Business</h2>
-          <p className="mono" style={{ opacity: 0.6, maxWidth: "600px", margin: "1rem auto 0" }}>Our platform upholds the rigorous standards of parliamentary discourse, ensuring every motion is heard and decided.</p>
+          <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", marginBottom: "2rem" }}>Order of <span style={{ color: "var(--color-accent)" }}>Business</span></h2>
+          <p className="mono" style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)", opacity: 0.8, lineHeight: 1.6, maxWidth: "800px", margin: "1rem auto 0" }}>Our platform upholds the rigorous standards of parliamentary discourse, ensuring every motion is heard and decided.</p>
         </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", position: "relative" }}>
@@ -53,7 +52,6 @@ export default function DebateEngine() {
           <Step 
             number="01" 
             title="PROPOSITION" 
-            icon={<Mic2 size={32} />} 
             desc="The motion is moved. The Proposition and Opposition deliver their opening statements to the House."
             color="var(--color-primary)"
             tilt="-5deg"
@@ -66,7 +64,6 @@ export default function DebateEngine() {
           <Step 
             number="02" 
             title="DISCUSSION" 
-            icon={<MessageSquare size={32} />} 
             desc="The floor is opened. Members engage in moderated debate, raising points of order and clarification."
             color="var(--color-accent)"
             tilt="5deg"
@@ -79,9 +76,8 @@ export default function DebateEngine() {
           <Step 
             number="03" 
             title="RESOLUTION" 
-            icon={<Award size={32} />} 
             desc="The House divides for the final division. Votes are tallied and the result is formally recorded."
-            color="var(--color-success)"
+            color="var(--color-secondary)"
             tilt="-5deg"
           />
         </div>
@@ -90,10 +86,10 @@ export default function DebateEngine() {
   );
 }
 
-function Step({ number, title, icon, desc, color, tilt }: { number: string, title: string, icon: React.ReactNode, desc: string, color: string, tilt: string }) {
+function Step({ number, title, desc, color, tilt }: { number: string, title: string, desc: string, color: string, tilt: string }) {
   const shadowColor = color === "var(--color-primary)" ? "var(--color-accent)" : 
                       color === "var(--color-accent)" ? "var(--color-secondary)" : 
-                      color === "var(--color-success)" ? "var(--color-primary)" : "#1d2021";
+                      color === "var(--color-secondary)" ? "var(--color-primary)" : "#1d2021";
 
   const textColor = color === "var(--color-accent)" ? "#1d2021" : "#ebdbb2";
 
@@ -103,7 +99,7 @@ function Step({ number, title, icon, desc, color, tilt }: { number: string, titl
       whileInView={{ 
         opacity: 1, 
         y: 0, 
-        rotate: tilt,
+        rotate: `var(--step-tilt, ${tilt})`,
         transition: { 
           duration: 0.8, 
           type: "spring", 
@@ -115,23 +111,21 @@ function Step({ number, title, icon, desc, color, tilt }: { number: string, titl
       className="engine-step game-card" 
       style={{ 
         flex: "1 1 300px", 
-        maxWidth: "350px", 
-        padding: "2rem", 
+        maxWidth: "var(--step-max-width)", 
+        padding: "var(--step-padding)", 
         zIndex: 1, 
         backgroundColor: color,
         color: textColor,
         border: "4px solid #1d2021",
         boxShadow: `8px 8px 0px ${shadowColor}`,
-        transformOrigin: "center center"
-      }}
+        transformOrigin: "center center",
+        "--step-tilt": tilt
+      } as any}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem" }}>
-        <div style={{ width: 60, height: 60, backgroundColor: "#1d2021", color: color, display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid #1d2021" }}>
-          {icon}
-        </div>
-        <span className="mono" style={{ fontSize: "1.5rem", fontWeight: 900, opacity: 0.3 }}>{number}</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1rem" }}>
+        <h3 style={{ fontSize: "1.5rem", letterSpacing: "1px", fontWeight: 900, margin: 0 }}>{title}</h3>
+        <span className="mono" style={{ fontSize: "1.5rem", fontWeight: 900, opacity: 0.78 }}>{number}</span>
       </div>
-      <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", letterSpacing: "1px", fontWeight: 900 }}>{title}</h3>
       <p className="mono" style={{ fontSize: "0.85rem", lineHeight: 1.5, fontWeight: 700 }}>{desc}</p>
     </motion.div>
   );

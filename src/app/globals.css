@@ -24,6 +24,10 @@
   --container-width: 1300px;
   --border-weight: 3px;
   --shadow-offset: 6px;
+
+  /* Step Card Variables */
+  --step-max-width: 350px;
+  --step-padding: 2rem;
 }
 
 * {
@@ -219,6 +223,7 @@ img {
 
   /* Reset tilts on mobile to prevent overflow/clipping */
   .engine-step {
+    --step-tilt: 0deg !important;
     rotate: 0deg !important;
     margin-bottom: 1rem;
   }
