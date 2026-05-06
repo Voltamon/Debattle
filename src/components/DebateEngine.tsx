@@ -41,7 +41,7 @@ export default function DebateEngine() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-          <div className="badge" style={{ marginBottom: "1rem", borderColor: "var(--color-secondary)", color: "var(--color-secondary)" }}>The Standing Orders</div>
+          <div className="badge" style={{ marginBottom: "1rem", "--badge-fill": "var(--color-secondary)" } as any}>The Standing Orders</div>
           <h2 style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}>Order of Business</h2>
           <p className="mono" style={{ opacity: 0.6, maxWidth: "600px", margin: "1rem auto 0" }}>Our platform upholds the rigorous standards of parliamentary discourse, ensuring every motion is heard and decided.</p>
         </div>

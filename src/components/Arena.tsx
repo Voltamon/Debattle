@@ -87,7 +87,7 @@ function MatchCard({ match }: { match: typeof MATCHES[0] }) {
       style={{ padding: "1.5rem", backgroundColor: "#ebdbb2", color: "#1d2021", border: "4px solid #1d2021", boxShadow: "8px 8px 0px #3c3836" }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1.5rem" }}>
-        <div className="badge" style={{ borderColor: "#1d2021", color: "#1d2021", fontWeight: 900 }}>
+        <div className="badge" style={{ "--badge-fill": "var(--color-primary)" } as any}>
           {match.status === "IN SESSION" ? <Timer size={12} /> : <TrendingUp size={12} />}
           {match.status} {match.timeLeft}
         </div>

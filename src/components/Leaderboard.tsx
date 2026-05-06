@@ -43,19 +43,19 @@ export default function Leaderboard() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <div className="badge" style={{ marginBottom: "1rem" }}>The Order of Merit</div>
+          <div className="badge" style={{ marginBottom: "1rem", "--badge-fill": "var(--color-accent)" } as any}>The Order of Merit</div>
           <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>Distinguished Orators</h2>
           <p className="mono" style={{ opacity: 0.7 }}>The world's most persuasive minds, ranked by their division record and reputation.</p>
         </div>
 
-        <div className="game-card" style={{ padding: "0", overflowX: "auto", backgroundColor: "var(--color-bg)" }}>
-          <div style={{ minWidth: "800px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "0.5fr 2fr 1fr 1fr 1fr", padding: "1.5rem", borderBottom: "2px solid var(--color-text)", backgroundColor: "var(--color-bg)", fontWeight: 900, textTransform: "uppercase", fontSize: "0.8rem" }} className="mono">
+        <div className="game-card" style={{ padding: "0", backgroundColor: "var(--color-bg)", border: "4px solid var(--color-text)" }}>
+          <div style={{ width: "100%" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "0.5fr 2fr 1fr 1fr 1fr", padding: "1.5rem", borderBottom: "2px solid var(--color-text)", backgroundColor: "var(--color-bg)", fontWeight: 900, textTransform: "uppercase", fontSize: "0.8rem" }} className="mono leaderboard-grid">
               <span>Precedence</span>
               <span>Member</span>
-              <span>Division Record</span>
-              <span>Reputation</span>
-              <span>Title</span>
+              <span className="mobile-hide">Division Record</span>
+              <span className="mobile-hide">Reputation</span>
+              <span className="mobile-hide">Title</span>
             </div>
 
             {LEADERS.map((leader, i) => (
@@ -73,20 +73,21 @@ export default function Leaderboard() {
                   alignItems: "center",
                   transition: "background-color 0.2s"
                 }}
+                className="leaderboard-grid"
                 whileHover={{ backgroundColor: "rgba(235, 219, 178, 0.05)" }}
               >
                 <span className="mono" style={{ fontSize: "1.2rem", fontWeight: 900, color: leader.rank <= 3 ? leader.color : "inherit" }}>
                   #{leader.rank}
                 </span>
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: leader.color, border: "2px solid var(--color-text)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-bg)" }}>
+                  <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: leader.color, border: "2px solid var(--color-text)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-bg)", flexShrink: 0 }}>
                     {leader.rank === 1 ? <Award size={20} /> : <ShieldCheck size={20} />}
                   </div>
-                  <span style={{ fontWeight: 800, fontSize: "1.1rem" }}>{leader.name}</span>
+                  <span style={{ fontWeight: 800, fontSize: "clamp(0.9rem, 2vw, 1.1rem)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{leader.name}</span>
                 </div>
-                <span className="mono" style={{ color: "var(--color-success)" }}>{leader.winRate}</span>
-                <span className="mono">{leader.xp}</span>
-                <div className="badge" style={{ fontSize: "0.6rem", borderColor: leader.color, color: leader.color, width: "fit-content" }}>
+                <span className="mono mobile-hide" style={{ color: "var(--color-success)" }}>{leader.winRate}</span>
+                <span className="mono mobile-hide">{leader.xp}</span>
+                <div className="badge mobile-hide" style={{ fontSize: "0.6rem", "--badge-fill": leader.color, width: "fit-content" } as any}>
                   {leader.level}
                 </div>
               </motion.div>

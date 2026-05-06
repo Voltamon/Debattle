@@ -43,11 +43,11 @@ export default function Hero() {
         <h1 style={{ fontSize: "30rem", margin: 0, lineHeight: 0.8 }}>DEBATE</h1>
       </motion.div>
 
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+      <div className="container hero-container" style={{ position: "relative", zIndex: 1 }}>
         <div className="grid">
           <div style={{ gridColumn: "1 / span 12", textAlign: "center", marginBottom: "clamp(2rem, 8vw, 4rem)" }}>
             <motion.div 
-              style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", cursor: "default" }}
+              style={{ display: "flex", flexWrap: "nowrap", justifyContent: "center", cursor: "default", width: "100%" }}
               initial="initial"
               animate="entrance"
             >

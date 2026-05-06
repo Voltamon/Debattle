@@ -72,7 +72,7 @@ export default function AboutUs() {
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="grid" style={{ alignItems: "center", marginBottom: "clamp(3rem, 10vw, 6rem)" }}>
           <div style={{ gridColumn: "1 / span 12", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }} className="desktop-grid-adjust">
-            <div className="badge" style={{ marginBottom: "1rem", color: "var(--color-primary)" }}>The Constitution</div>
+            <div className="badge" style={{ marginBottom: "1rem", "--badge-fill": "var(--color-primary)" } as any}>The Constitution</div>
             <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", marginBottom: "2rem" }}>The House is in Order.</h2>
             <p className="mono" style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)", opacity: 0.8, lineHeight: 1.6, maxWidth: "800px" }}>
               Debattle is the digital successor to the great debating chambers of history. We provide the infrastructure for rigorous, structured, and civil disagreement—where rhetoric is refined, and logic is the only currency.
@@ -92,7 +92,7 @@ export default function AboutUs() {
                 <motion.span
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.8 }}
-                  style={{ display: "inline-block", width: "4px", height: "1.2em", backgroundColor: "var(--color-primary)", marginLeft: "4px", verticalAlign: "middle" }}
+                  style={{ display: "inline-block", width: "4px", height: "1.2em", backgroundColor: "var(--color-accent)", marginLeft: "4px", verticalAlign: "middle" }}
                 />
               </blockquote>
               <footer className="mono" style={{ marginTop: "2rem", color: "var(--color-primary)", fontSize: "0.8rem", fontWeight: 800 }}>— THE STANDING ORDERS v1.0</footer>
