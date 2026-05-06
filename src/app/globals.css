@@ -208,6 +208,6 @@ img {
 
 @media (min-width: 1024px) {
   .hero-letter {
-    font-size: clamp(35rem, 50vw, 100rem);
+    font-size: clamp(3rem, 16vw, 30rem);
   }
 }
