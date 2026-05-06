@@ -31,7 +31,7 @@ export default function Leaderboard() {
           x: "-50%",
           translateX: doodleX,
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
           rotate: "-10deg", 

@@ -1,24 +1,24 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Users, Timer, TrendingUp } from "lucide-react";
+import { Timer, TrendingUp } from "lucide-react";
 
 const MATCHES = [
   {
     id: 1,
-    topic: "This House believes that AI development should be paused indefinitely.",
-    p1: { name: "Chancellor_X", avatar: "/images/avatar_1.png", votes: 450 },
-    p2: { name: "Opposition_Y", avatar: "/images/avatar_2.png", votes: 380 },
+    topic: "Should direct democracy replace the current representative parliamentary model?",
+    p1: { name: "Advocate_Jae", votes: 423, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jae" },
+    p2: { name: "Traditionalist_Vane", votes: 312, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vane" },
     status: "IN SESSION",
-    timeLeft: "04:22"
+    timeLeft: "04:22:12"
   },
   {
     id: 2,
-    topic: "This House would implement a universal basic income.",
-    p1: { name: "Member_Prime", avatar: "/images/avatar_2.png", votes: 1200 },
-    p2: { name: "Shadow_Minister", avatar: "/images/avatar_1.png", votes: 1150 },
-    status: "DIVISION",
-    timeLeft: "12:45"
+    topic: "The abolition of hereditary peerages in the Upper Chamber: A necessary modernization?",
+    p1: { name: "Reformer_Zane", votes: 892, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zane" },
+    p2: { name: "Lord_Sterling", votes: 745, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sterling" },
+    status: "VOTING OPEN",
+    timeLeft: "01:12:05"
   }
 ];
 
@@ -32,20 +32,20 @@ export default function Arena() {
   const doodleX = useTransform(scrollYProgress, [0, 1], [-150, 150]);
 
   return (
-    <section id="arena" ref={sectionRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", overflow: "hidden" }}>
+    <section id="arena" ref={sectionRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", overflow: "hidden", borderTop: "var(--border-weight) solid var(--color-text)" }}>
       {/* Background Doodle */}
       <motion.div 
         className="mobile-hide" 
         style={{ 
           position: "absolute", 
           top: "10%", 
-          left: "-10%", 
+          left: "-5%", 
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
-          rotate: "10deg", 
-          color: "var(--color-accent)",
+          rotate: "-10deg", 
+          color: "var(--color-primary)",
           x: doodleX
         }}
       >
@@ -53,15 +53,10 @@ export default function Arena() {
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "3rem" }}>
-          <div>
-            <div className="badge badge-live" style={{ marginBottom: "1rem" }}>The House</div>
-            <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1 }}>Current Sessions</h2>
-          </div>
-          <div className="mobile-hide" style={{ textAlign: "right" }}>
-            <p className="mono" style={{ opacity: 0.6, fontSize: "0.8rem" }}>OPEN_SESSIONS: 02</p>
-            <p className="mono" style={{ opacity: 0.6, fontSize: "0.8rem" }}>TOTAL_MEMBERS: 12.4K</p>
-          </div>
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <div className="badge" style={{ marginBottom: "1rem", "--badge-fill": "var(--color-primary)" } as any}>The Chamber</div>
+          <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)" }}>Live Divisions</h2>
+          <p className="mono" style={{ fontSize: "1rem", opacity: 0.6, maxWidth: "600px", margin: "1rem auto 0" }}>Real-time asynchronous debates currently in progress. Audit the logic and record your vote.</p>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
@@ -74,10 +69,9 @@ export default function Arena() {
   );
 }
 
-function MatchCard({ match }: { match: typeof MATCHES[0] }) {
-  const totalVotes = match.p1.votes + match.p2.votes;
-  const p1Percent = (match.p1.votes / totalVotes) * 100;
-
+function MatchCard({ match }: { match: any }) {
+  const p1Percent = (match.p1.votes / (match.p1.votes + match.p2.votes)) * 100;
+  
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}

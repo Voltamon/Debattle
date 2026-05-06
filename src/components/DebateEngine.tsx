@@ -19,24 +19,24 @@ export default function DebateEngine() {
   }, []);
 
   return (
-    <section ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", borderTop: "var(--border-weight) solid var(--color-text)", overflow: "hidden" }}>
+    <section id="engine" ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", borderTop: "var(--border-weight) solid var(--color-text)", overflow: "hidden" }}>
       {/* Background Doodle */}
       <motion.div 
         className="mobile-hide" 
         style={{ 
           position: "absolute", 
-          top: "20%", 
-          right: "-15%", 
+          top: "15%", 
+          right: "-10%", 
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
-          rotate: "-5deg", 
-          color: "var(--color-primary)",
+          rotate: "15deg", 
+          color: "var(--color-accent)",
           x: doodleX
         }}
       >
-        <h1 style={{ fontSize: "25rem", margin: 0, lineHeight: 0.8 }}>DIVISION</h1>
+        <h1 style={{ fontSize: "25rem", margin: 0, lineHeight: 0.8 }}>ENGINE</h1>
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>

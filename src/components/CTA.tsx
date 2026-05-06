@@ -24,7 +24,7 @@ export default function CTA() {
           bottom: "-15%", 
           left: "-10%", 
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
           rotate: "15deg", 
@@ -110,14 +110,14 @@ export default function CTA() {
         borderTop: "3px solid var(--color-bg)",
         borderBottom: "3px solid var(--color-bg)",
         zIndex: 1, 
-        padding: "1.5rem 0",
+        padding: "clamp(0.6rem, 2vw, 1.5rem) 0",
         rotate: "-2deg"
       }}>
         <motion.div
           style={{ display: "flex", gap: "2rem", alignItems: "center", x: beltX }}
         >
           {Array(10).fill(0).map((_, i) => (
-            <span key={i} className="mono" style={{ fontSize: "1.5rem", color: "var(--color-bg)", fontWeight: 900, textTransform: "uppercase" }}>
+            <span key={i} className="mono" style={{ fontSize: "clamp(0.8rem, 3vw, 1.5rem)", color: "var(--color-bg)", fontWeight: 900, textTransform: "uppercase" }}>
               PARLIAMENTARY SESSIONS • LIVE DIVISIONS • ORDER OF MERIT • DECORUM • 
             </span>
           ))}

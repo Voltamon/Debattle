@@ -32,7 +32,7 @@ export default function Hero() {
           top: "15%", 
           left: "55%", 
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
           rotate: "-15deg", 

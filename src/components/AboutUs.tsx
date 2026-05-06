@@ -16,7 +16,7 @@ export default function AboutUs() {
     offset: ["start end", "end start"]
   });
 
-  const doodleX = useTransform(scrollYProgress, [0, 1], [120, -120]);
+  const doodleX = useTransform(scrollYProgress, [0, 1], [-120, 120]);
   
   useEffect(() => {
     if (isQuoteInView) {
@@ -55,14 +55,14 @@ export default function AboutUs() {
         style={{ 
           position: "absolute", 
           top: "50%", 
-          right: "-10%", 
+          left: "-10%", 
           y: "-50%",
           x: doodleX,
           zIndex: 0, 
-          opacity: 0.05, 
+          opacity: 0.15, 
           pointerEvents: "none", 
           whiteSpace: "nowrap", 
-          rotate: "20deg", 
+          rotate: "-20deg", 
           color: "var(--color-primary)" 
         }}
       >

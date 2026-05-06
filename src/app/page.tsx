@@ -1,41 +1,22 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Arena from "../components/Arena";
 import DebateEngine from "../components/DebateEngine";
-import Leaderboard from "../components/Leaderboard";
 import AboutUs from "../components/AboutUs";
-import CTA from "../components/CTA";
+import CTA from "@/components/CTA";
+// import Leaderboard from "@/components/Leaderboard";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-  
-  // Dynamic background color mapping based on scroll
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    [
-      "#1d2021", // Hero (Dark)
-      "#282828", // Arena (Deep Gray)
-      "#1d2021", // Engine (Dark)
-      "#32302f", // Leaderboard (Warm Dark)
-      "#1d2021"  // CTA/AboutUs (Back to Dark)
-    ]
-  );
 
   return (
-    <motion.main 
-      style={{ backgroundColor, minHeight: "100vh", transition: "background-color 0.5s ease" }}
-    >
+    <main style={{ backgroundColor: "#1d2021", minHeight: "100vh" }}>
       <Hero />
-      
-      <Arena />
       
       <DebateEngine />
       
-      <Leaderboard />
-      
+      {/* <Leaderboard /> */}
+
       <AboutUs />
       
       <CTA />
@@ -85,6 +66,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </motion.main>
+    </main>
   );
 }
