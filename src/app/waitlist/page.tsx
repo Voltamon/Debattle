@@ -89,7 +89,7 @@ export default function WaitlistPage() {
             backgroundColor: "var(--color-surface)",
             border: "4px solid var(--color-text)",
             boxShadow: "12px 12px 0px var(--color-primary)",
-            margin: "0 auto",
+            margin: "15px auto",
             width: "100%"
           }}>
             <AnimatePresence mode="wait">
@@ -225,11 +225,11 @@ export default function WaitlistPage() {
         </motion.div>
       </div>
 
-      <div style={{ marginTop: "4rem", opacity: 0.4, textAlign: "center" }} className="mono">
+      {/* <div style={{ marginTop: "4rem", opacity: 0.4, textAlign: "center" }} className="mono">
         <p style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "2px" }}>
           Debattle Waitlist System v1.0 • All Rights Reserved
         </p>
-      </div>
+      </div> */}
     </main>
   );
 }
