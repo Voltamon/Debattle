@@ -25,7 +25,7 @@ export default function WaitlistPage() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: "2rem",
+      padding: "4rem 0.5rem",
       position: "relative",
       overflow: "hidden"
     }}>
