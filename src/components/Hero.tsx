@@ -23,7 +23,6 @@ export default function Hero() {
       }}
     >
       {/* Background Grid & Giant Text */}
-      <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.1, backgroundImage: "radial-gradient(var(--color-text) 1px, transparent 1px)", backgroundSize: "40px 40px", pointerEvents: "none" }} />
       
       <motion.div 
         className="mobile-hide" 
@@ -114,6 +113,8 @@ export default function Hero() {
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "var(--color-text)", color: "var(--color-bg)" }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}
                   className="game-card"
                   style={{ padding: "0.8rem 1.5rem", backgroundColor: "var(--color-primary)", color: "var(--color-bg)", fontWeight: 900, fontSize: "0.9rem", textTransform: "uppercase", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem" }}
                 >
@@ -122,6 +123,7 @@ export default function Hero() {
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   style={{ padding: "0.8rem 1.5rem", backgroundColor: "transparent", border: "2px solid var(--color-text)", color: "var(--color-text)", fontWeight: 800, textTransform: "uppercase", cursor: "pointer", fontSize: "0.9rem" }}
                 >
                   The Manifesto

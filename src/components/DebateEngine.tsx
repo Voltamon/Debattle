@@ -107,6 +107,13 @@ function Step({ number, title, desc, color, tilt }: { number: string, title: str
           damping: 20
         } 
       }}
+      whileHover={{ 
+        y: -10, 
+        scale: 1.02,
+        boxShadow: `12px 12px 0px ${shadowColor}`,
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ scale: 0.98 }}
       viewport={{ once: true, margin: "-100px" }}
       className="engine-step game-card" 
       style={{ 
@@ -119,6 +126,8 @@ function Step({ number, title, desc, color, tilt }: { number: string, title: str
         border: "4px solid #1d2021",
         boxShadow: `8px 8px 0px ${shadowColor}`,
         transformOrigin: "center center",
+        cursor: "pointer",
+        userSelect: "none",
         "--step-tilt": tilt
       } as any}
     >
