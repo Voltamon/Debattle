@@ -19,7 +19,7 @@ export default function DebateEngine() {
   }, []);
 
   return (
-    <section id="engine" ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", borderTop: "var(--border-weight) solid var(--color-text)", overflow: "hidden" }}>
+    <section id="arena" ref={containerRef} style={{ padding: "var(--spacing-xl) 0", backgroundColor: "transparent", position: "relative", borderTop: "var(--border-weight) solid var(--color-text)", overflow: "hidden" }}>
       {/* Background Doodle */}
       <motion.div 
         className="mobile-hide" 
@@ -41,7 +41,7 @@ export default function DebateEngine() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-          <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", marginBottom: "2rem" }}>Order of <span style={{ color: "var(--color-accent)" }}>Business</span></h2>
+          <h2 style={{ fontSize: "clamp(2.8rem, 9vw, 5.2rem)", marginBottom: "2rem" }}>Order of <span style={{ color: "var(--color-accent)" }}>Debate</span></h2>
           <p className="mono" style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)", opacity: 0.8, lineHeight: 1.6, maxWidth: "800px", margin: "1rem auto 0" }}>Our platform upholds the rigorous standards of parliamentary discourse, ensuring every motion is heard and decided.</p>
         </div>
 
