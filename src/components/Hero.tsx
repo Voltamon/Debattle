@@ -1,6 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Zap, Play } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   const letters = "DEBATTLE.".split("");
@@ -116,7 +117,7 @@ export default function Hero() {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' })}
                   className="game-card"
-                  style={{ padding: "0.8rem 1.5rem", backgroundColor: "var(--color-primary)", color: "var(--color-bg)", fontWeight: 900, fontSize: "0.9rem", textTransform: "uppercase", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                  style={{ padding: "0.8rem 1.5rem", backgroundColor: "var(--color-primary)", color: "var(--color-bg)", fontWeight: 900, fontSize: "0.9rem", textTransform: "uppercase", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem", border: "none" }}
                 >
                   <Play size={18} fill="currentColor" />
                   Reserve Your Seat

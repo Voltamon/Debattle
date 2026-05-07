@@ -1,6 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Trophy, Shield } from "lucide-react";
+import Link from "next/link";
 import { useRef } from "react";
 
 export default function CTA() {
@@ -49,28 +50,30 @@ export default function CTA() {
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "var(--color-text)", color: "var(--color-bg)" }}
-              whileTap={{ scale: 0.95 }}
-              style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center",
-                gap: "0.75rem", 
-                backgroundColor: "var(--color-bg)", 
-                color: "var(--color-text)", 
-                padding: "1rem 2rem", 
-                fontSize: "clamp(0.9rem, 2vw, 1.1rem)", 
-                fontWeight: 900, 
-                textTransform: "uppercase",
-                border: "4px solid var(--color-text)",
-                boxShadow: "6px 6px 0px var(--color-text)",
-                cursor: "pointer",
-                width: "min(100%, 350px)"
-              }}
-            >
-              Join the Waitlist <ArrowRight size={20} />
-            </motion.button>
+            <Link href="/waitlist" style={{ width: "min(100%, 350px)", textDecoration: 'none' }}>
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "var(--color-text)", color: "var(--color-bg)" }}
+                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center",
+                  gap: "0.75rem", 
+                  backgroundColor: "var(--color-bg)", 
+                  color: "var(--color-text)", 
+                  padding: "1rem 2rem", 
+                  fontSize: "clamp(0.9rem, 2vw, 1.1rem)", 
+                  fontWeight: 900, 
+                  textTransform: "uppercase",
+                  border: "4px solid var(--color-text)",
+                  boxShadow: "6px 6px 0px var(--color-text)",
+                  cursor: "pointer",
+                  width: "100%"
+                }}
+              >
+                Join the Waitlist <ArrowRight size={20} />
+              </motion.button>
+            </Link>
             
             <motion.button
               whileHover={{ scale: 1.05 }}
