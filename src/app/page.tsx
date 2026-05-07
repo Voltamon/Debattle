@@ -24,15 +24,15 @@ export default function Home() {
       <footer style={{ backgroundColor: "rgba(0,0,0,0.2)", color: "var(--color-text)", padding: "2rem 0", borderTop: "var(--border-weight) solid var(--color-text)" }}>
         <div className="container">
           <div className="grid">
-            <div style={{ gridColumn: "1 / span 12", textAlign: "center", marginBottom: "2rem" }} className="desktop-grid-adjust">
-              <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>DEBATTLE<span style={{ color: "var(--color-primary)" }}>.</span></h2>
+            <div style={{ gridColumn: "1 / span 12", textAlign: "center", marginBottom: "0rem" }} className="desktop-grid-adjust">
+              <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>DEBATTLE<span style={{ color: "var(--color-primary)" }}>. </span></h2>
               <p className="mono" style={{ fontSize: "0.8rem", opacity: 0.6, maxWidth: "600px", margin: "0 auto" }}>
                 The world's premier platform for competitive rhetoric and structured parliamentary discourse.
               </p>
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "2rem", marginBottom: "2rem" }} className="mono">
+          {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "2rem", marginBottom: "2rem" }} className="mono">
             <div>
               <h4 style={{ marginBottom: "1rem", color: "var(--color-accent)" }}>Platform</h4>
               <ul style={{ listStyle: "none", fontSize: "0.75rem", opacity: 0.8, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -63,7 +63,7 @@ export default function Home() {
             <p className="mono" style={{ fontSize: "0.7rem", opacity: 0.4 }}>
               © {new Date().getFullYear()} DEBATTLE. ELEVATING PUBLIC DISCOURSE.
             </p>
-          </div>
+          </div> */}
         </div>
       </footer>
     </main>
