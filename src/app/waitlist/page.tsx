@@ -69,6 +69,7 @@ export default function WaitlistPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          style={{ maxWidth: "650px", margin: "0 auto", width: "100%" }}
         >
           <Link href="/" style={{ 
             display: "inline-flex", 
@@ -99,8 +100,12 @@ export default function WaitlistPage() {
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -20 }}
                 >
-                  <div style={{ marginBottom: "clamp(3rem, 10vw, 5rem)", textAlign: "center" }}>
-                    <h2 style={{ fontSize: "clamp(1.8rem, 5vw, 4rem)", lineHeight: 1, marginBottom: "2rem" }}>RESERVE YOUR SEAT</h2>
+                  <div style={{ 
+                    marginBottom: "clamp(3rem, 10vw, 5rem)", 
+                    textAlign: "center",
+                    marginInline: "calc(-1 * clamp(0.5rem, 3vw, 2rem))"
+                  }}>
+                    <h2 style={{ fontSize: "clamp(1.8rem, 5vw, 3.6rem)", lineHeight: 1, marginBottom: "2rem"}}>RESERVE YOUR SEAT</h2>
                     <p className="mono" style={{ fontSize: "clamp(0.8rem, 1.2vw, 1rem)", opacity: 0.6, maxWidth: "550px", margin: "0 auto", lineHeight: 1.5 }}>
                       Entries are processed in the order they are received. Parliamentary decorum is expected at all times.
                     </p>
@@ -203,7 +208,11 @@ export default function WaitlistPage() {
                   <div style={{ marginBottom: "2rem", color: "var(--color-success)" }}>
                     <CheckCircle size={100} strokeWidth={1.5} />
                   </div>
-                  <h2 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", marginBottom: "1.5rem" }}>ORDER RECEIVED</h2>
+                  <h2 style={{ 
+                    fontSize: "clamp(2rem, 5vw, 4rem)", 
+                    marginBottom: "1.5rem",
+                    marginInline: "calc(-1 * clamp(0.5rem, 3vw, 2rem))"
+                  }}>ORDER RECEIVED</h2>
                   <p className="mono" style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", opacity: 0.8, marginBottom: "3rem", maxWidth: "600px", margin: "0 auto 3rem" }}>
                     Your petition for enrollment has been filed. We will contact you at <strong>{formData.email}</strong> when a seat becomes available.
                   </p>
