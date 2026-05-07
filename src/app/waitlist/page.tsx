@@ -213,7 +213,7 @@ export default function WaitlistPage() {
                     marginBottom: "1.5rem",
                     marginInline: "calc(-1 * clamp(0.5rem, 3vw, 2rem))"
                   }}>ORDER RECEIVED</h2>
-                  <p className="mono" style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", opacity: 0.8, marginBottom: "3rem", maxWidth: "600px", margin: "0 auto 3rem" }}>
+                  <p className="mono" style={{ fontSize: "clamp(0.8rem, 1.2vw, 1rem)", opacity: 0.8, marginBottom: "3rem", maxWidth: "600px", margin: "0 auto 3rem" }}>
                     Your petition for enrollment has been filed. We will contact you at <strong>{formData.email}</strong> when a seat becomes available.
                   </p>
                   <Link href="/" className="game-card" style={{ 
